@@ -67,7 +67,7 @@ npm install
 
 ```bash
 cd workshop-api-wsp
-npm start
+node index.js
 ```
 
 ## Acceder a la API
