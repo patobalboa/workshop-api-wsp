@@ -8,8 +8,7 @@ En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 co
 
 - [Requisitos](#requisitos)
 - [Crear un servidor en AWS EC2 con Ubuntu Server 20.04 LTS](#crear-un-servidor-en-aws-ec2-con-ubuntu-server-2004-lts)
-- [Instalar npm y nodejs](#instalar-npm-y-nodejs)
-- [Instalar git](#instalar-git)
+- [Instalar los paquetes necesarios](#instalar-los-paquetes-necesarios)
 - [Instalar la API](#instalar-la-api)
 - [Ejecutar la API](#ejecutar-la-api)
 - [Acceder a la API](#acceder-a-la-api)
@@ -22,8 +21,7 @@ En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 co
 
 - Crear un servidor en AWS EC2 con Ubuntu Server 20.04 LTS
 - Tener PuTTY o un cliente SSH para conectarse al servidor
-- Instalar npm y nodejs en el servidor
-- Instalar git en el servidor
+- Instalar Nodejs, npm, git y otros paquetes necesarios para correr la API.
 - Instalar la API
 
 
@@ -41,30 +39,20 @@ En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 co
 10. Utilizar el programa Putty para conectarse a la instancia con el par de claves descargado en el paso 7 y la dirección IPv4 pública de la instancia o su nombre de DNS público.
 
 
-## Instalar npm y nodejs
+## Instalar los paquetes necesarios
 
-1. En la consola de AWS entrar a la instancia creada
+1. Entrar en la consola de nuestra instancia creada
 2. Ejecutar los siguientes comandos
 
 ```bash
 sudo apt update
-sudo apt install nodejs
-sudo apt install npm
-```
+sudo apt install nodejs npm git gconf-service libgbm-dev libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget -y
 
-## Instalar git
-
-1. En la consola de AWS entrar a la instancia creada
-2. Ejecutar los siguientes comandos
-
-```bash
-sudo apt install git
 ```
 
 ## Instalar la API
 
-1. En la consola de AWS entrar a la instancia creada
-2. Ejecutar los siguientes comandos
+1. Ejecutar los siguientes comandos en la consola de nuesto servidor
 
 ```bash
 git clone https://github.com/patobalboa/workshop-api-wsp.git
@@ -79,7 +67,7 @@ npm install
 
 ```bash
 cd workshop-api-wsp
-npm start
+node index.js
 ```
 
 ## Acceder a la API
@@ -88,7 +76,7 @@ npm start
 2. Ejecutar los siguientes comandos
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"phone": "56987645321", "message": "Hola Mundo"}' http://localhost:3000/
+curl -X POST -H "Content-Type: application/json" -d '{"phone": "56987645321", "message": "Hola Mundo"}' http://localhost:3000/send
 ```
 
 
@@ -100,7 +88,8 @@ curl -X POST -H "Content-Type: application/json" -d '{"phone": "56987645321", "m
 4. Seleccionar la opción "Agregar regla"
 5. Seleccionar la opción "TCP personalizado"
 6. Escribir el puerto 3000
-7. Seleccionar la opción "Guardar reglas"
+7. Escribir en el Origen el siguiente CIDR "0.0.0.0/0"
+8. Seleccionar la opción "Guardar reglas"
 
 ## Acceder a la API desde el exterior con Postman
 
@@ -110,7 +99,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"phone": "56987645321", "m
 https://www.postman.com/downloads/
 ```
 
-2. Seleccionar la opción "Descargar Postman para Windows"
+2. Descargar la opción según tu Sistema Operativo
 3. Ejecutar el instalador
 4. Abrir Postman
 5. Seleccionar la opción "Nueva pestaña"
@@ -118,7 +107,7 @@ https://www.postman.com/downloads/
 7. Escribir la dirección IPv4 pública de la instancia o su nombre de DNS público con el puerto 3000
 
 ```bash
-Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/
+Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/send
 ```
 
 8. Seleccionar la opción "Body"
@@ -143,7 +132,7 @@ Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/
 https://insomnia.rest/download/
 ```
 
-2. Seleccionar la opción "Descargar para Windows"
+2. Descargar la opción según tu Sistema Operativo
 3. Ejecutar el instalador
 4. Abrir Insomnia
 5. Seleccionar la opción "Crear solicitud"
@@ -151,7 +140,7 @@ https://insomnia.rest/download/
 7. Escribir la dirección IPv4 pública de la instancia o su nombre de DNS público con el puerto 3000
 
 ```bash
-Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/
+Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/send
 ```
 
 8. Seleccionar la opción "Body"
@@ -173,7 +162,7 @@ Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/
 1. En el navegador web ingresar la siguiente dirección
 
 ```bash
-Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/
+Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/client.html
 ```
 
 2. Rellenar los campos con los datos requeridos y seleccionar la opción "Enviar".
