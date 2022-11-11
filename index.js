@@ -54,6 +54,19 @@ app.post('/send', async (req, res, next) => {
     }
 });
 
+
+app.route('/form').get((req, res) => {
+    res.send(`
+        <form action="/send" method="post">
+            <input type="text" name="phone" placeholder="56987654321" />
+            <input type="text" name="message" placeholder="Mensaje" />
+            <button type="submit">Enviar</button>
+        </form>
+    `);
+});
+
+
+
 client.on('auth_failure', async () => {
     console.log('AUTHENTICATION FAILURE');
 });
