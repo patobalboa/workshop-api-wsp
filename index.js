@@ -41,11 +41,8 @@ app.post('/send', async (req, res, next) => {
 
     try {
 
-        const {
-            number,
-            message
-        } = req.body;
-        const msg = await client.sendMessage(`${number}@c.us`, message);
+        const {phone, message} = req.body;
+        const msg = await client.sendMessage(`${phone}@c.us`, message);
         res.send("El mensaje se ha enviado correctamente");
         console.log("El mensaje se ha enviado correctamente");
 
