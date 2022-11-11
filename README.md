@@ -100,7 +100,8 @@ curl -X POST -H "Content-Type: application/json" -d '{"phone": "56987645321", "m
 4. Seleccionar la opción "Agregar regla"
 5. Seleccionar la opción "TCP personalizado"
 6. Escribir el puerto 3000
-7. Seleccionar la opción "Guardar reglas"
+7. Escribir en el Origen el siguiente CIDR "0.0.0.0/0"
+8. Seleccionar la opción "Guardar reglas"
 
 ## Acceder a la API desde el exterior con Postman
 
@@ -110,7 +111,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"phone": "56987645321", "m
 https://www.postman.com/downloads/
 ```
 
-2. Seleccionar la opción "Descargar Postman para Windows"
+2. Descargar la opción según tu Sistema Operativo
 3. Ejecutar el instalador
 4. Abrir Postman
 5. Seleccionar la opción "Nueva pestaña"
@@ -143,7 +144,7 @@ Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/
 https://insomnia.rest/download/
 ```
 
-2. Seleccionar la opción "Descargar para Windows"
+2. Descargar la opción según tu Sistema Operativo
 3. Ejecutar el instalador
 4. Abrir Insomnia
 5. Seleccionar la opción "Crear solicitud"
