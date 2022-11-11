@@ -162,7 +162,7 @@ Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/send
 1. En el navegador web ingresar la siguiente dirección
 
 ```bash
-Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/client.html
+Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/form
 ```
 
 2. Rellenar los campos con los datos requeridos y seleccionar la opción "Enviar".
