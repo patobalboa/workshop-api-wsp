@@ -169,7 +169,9 @@ Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/form
 
 ## Disclaimer
 
-Este proyecto no está afiliado, asociado, autorizado, respaldado por, o en alguna forma oficialmente conectado con WhatsApp, o cualquier de sus filiales o sus afiliados. El nombre "WhatsApp" como marca registrada como se usa en este proyecto se usa únicamente con fines de identificación y referencia. Los nombres de compañías, productos, servicios y logotipos mencionados en este proyecto son propiedad de sus respectivos dueños. El uso de cualquier marca registrada es solo con fines de identificación y referencia, y no implica ninguna asociación con la marca propietaria.
+Este proyecto no está afiliado, asociado, autorizado, respaldado por, o en alguna forma oficialmente conectado con WhatsApp, o cualquier de sus filiales o sus afiliados. El nombre "WhatsApp" como marca registrada como se usa en este proyecto se usa únicamente con fines de identificación y referencia. 
+
+Los nombres de compañías, productos, servicios y logotipos mencionados en este proyecto son propiedad de sus respectivos dueños. El uso de cualquier marca registrada es solo con fines de identificación y referencia, y no implica ninguna asociación con la marca propietaria.
 
 Este proyecto no está diseñado para ser usado en producción. El uso de esta API es bajo su propio riesgo y responsabilidad. 
 
