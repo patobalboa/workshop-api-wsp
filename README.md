@@ -16,6 +16,9 @@ En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 co
 - [Acceder a la API con Postman](#acceder-a-la-api-con-postman)
 - [Acceder a la API con Insomnia](#acceder-a-la-api-con-insomnia)
 - [Acceder a la API desde el exterior con el navegador web](#acceder-a-la-api-desde-el-exterior-con-el-navegador-web)
+- [Disclaimer](#disclaimer)
+- [Licencia](#licencia)
+- [Librerías utilizadas creadas por terceros](#librerias-utilizadas-creadas-por-terceros)
 
 ## Requisitos
 
