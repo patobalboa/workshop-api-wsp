@@ -167,6 +167,18 @@ Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/form
 
 2. Rellenar los campos con los datos requeridos y seleccionar la opción "Enviar".
 
+## Licencia
+
+[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+
+## Librerías utilizadas creadas por terceros
+
+* [qrcode-terminal](https://www.npmjs.com/package/qrcode-terminal) de [gtanner](https://github.com/gtanner)
+* [whatsapp-web.js](https://www.npmjs.com/package/whatsapp-web.js) de [pedroslopez](https://github.com/pedroslopez)
+
+
+
+
 
 
 
