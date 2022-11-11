@@ -76,7 +76,7 @@ node index.js
 2. Ejecutar los siguientes comandos
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"phone": "56987645321", "message": "Hola Mundo"}' http://localhost:3000/
+curl -X POST -H "Content-Type: application/json" -d '{"phone": "56987645321", "message": "Hola Mundo"}' http://localhost:3000/send
 ```
 
 
