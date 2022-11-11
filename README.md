@@ -4,6 +4,20 @@
 
 En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 con Ubuntu Server 20.04 LTS, luego vamos a configurarla para que pueda ser accedida desde el exterior y por último vamos a crear un cliente que se conecte a la API y envíe mensajes de WhatsApp con herramientas como Postman, Insomnia, cURL y formularios HTML.
 
+## Contenido
+
+- [Requisitos](#requisitos)
+- [Crear un servidor en AWS EC2](#crear-un-servidor-en-aws-ec2)
+- [Instalar npm y nodejs](#instalar-npm-y-nodejs)
+- [Instalar git](#instalar-git)
+- [Instalar la API](#instalar-la-api)
+- [Ejecutar la API](#ejecutar-la-api)
+- [Acceder a la API](#acceder-a-la-api)
+- [Acceder a la API desde el exterior](#acceder-a-la-api-desde-el-exterior)
+- [Acceder a la API con Postman](#acceder-a-la-api-con-postman)
+- [Acceder a la API con Insomnia](#acceder-a-la-api-con-insomnia)
+- [Acceder a la API desde el exterior con el navegador web](#acceder-a-la-api-desde-el-exterior-con-el-navegador-web)
+
 ## Requisitos
 
 - Crear un servidor en AWS EC2 con Ubuntu Server 20.04 LTS
