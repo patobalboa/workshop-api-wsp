@@ -7,7 +7,7 @@ En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 co
 ## Contenido
 
 - [Requisitos](#requisitos)
-- [Crear un servidor en AWS EC2](#crear-un-servidor-en-aws-ec2)
+- [Crear un servidor en AWS EC2 con Ubuntu Server 20.04 LTS](#crear-un-servidor-en-aws-ec2-con-ubuntu-server-2004-lts)
 - [Instalar npm y nodejs](#instalar-npm-y-nodejs)
 - [Instalar git](#instalar-git)
 - [Instalar la API](#instalar-la-api)
