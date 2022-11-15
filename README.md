@@ -88,7 +88,22 @@ npm install
 ## Configurar la API
 
 1. En nuestra consola de AWS, seleccionar la opción "RDS" y seleccionar la base de datos creada en el paso 13 de la sección "Crear una Base de Datos en AWS RDS con MariaDB"
-2. En la sección "Conectividad y seguridad" se mostrará la dirección IPv4 pública de nuestra base de datos, copiarla en el parámetro "DB_HOST" del archivo del paso 4.
+2. En la sección "Conectividad y seguridad" se mostrará la dirección IPv4 pública de nuestra base de datos, copiarla.
+
+## Crear nuestra base de datos
+
+1. En la consola de nuestro servidor, ejecutar el siguiente comando
+
+```bash
+cd workshop-api-wsp
+mysql -h <punto-de-enlace-de-nuestra-base-de-datos> -u admin -p -e "CREATE DATABASE <nombre-de-database>;"
+```
+2. Importar la base de datos
+
+```bash
+mysql -h <punto-de-enlace-de-nuestra-base-de-datos> -u admin -p <nombre-de-database> < db.sql
+```
+
 3. Ejecutar los siguientes comandos en la consola de nuesto servidor
 
 ```bash
@@ -105,6 +120,7 @@ DB_NAME="Nombre de la base de datos"
 ```
 
 5. Guardar el archivo con Ctrl + O y salir con Ctrl + X
+
 
 
 ## Ejecutar la API
