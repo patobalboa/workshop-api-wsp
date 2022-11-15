@@ -8,18 +8,18 @@ En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 co
 
 - [Requisitos](#requisitos)
 - [Crear un servidor en AWS EC2 con Ubuntu Server 20.04 LTS](#crear-un-servidor-en-aws-ec2-con-ubuntu-server-2004-lts)
-- [Crear una Base de Datos en AWS RDS con MariaDB](#crear-una-base-de-datos-en-aws-rds-con-mariadb) (NUEVO)
-- [Instalar los paquetes necesarios](#instalar-los-paquetes-necesarios) (Actualizado - Volver a ejecutar)
+- [Crear una Base de Datos en AWS RDS con MariaDB](#crear-una-base-de-datos-en-aws-rds-con-mariadb) **(NUEVO)**
+- [Instalar los paquetes necesarios](#instalar-los-paquetes-necesarios) **(Actualizado - Volver a ejecutar)**
 - [Instalar la API](#instalar-la-api) 
-- [Configurar la API](#configurar-la-api) (NUEVO)
-- [Ejecutar la API](#ejecutar-la-api) (Actualizado)
+- [Configurar la API](#configurar-la-api) **(NUEVO)**
+- [Ejecutar la API](#ejecutar-la-api) **(Actualizado)**
 - [Acceder a la API](#acceder-a-la-api)
 - [Acceder a la API desde el exterior](#acceder-a-la-api-desde-el-exterior)
 - [Acceder a la API con Postman](#acceder-a-la-api-con-postman)
 - [Acceder a la API con Insomnia](#acceder-a-la-api-con-insomnia)
 - [Acceder a la API desde el exterior con el navegador web](#acceder-a-la-api-desde-el-exterior-con-el-navegador-web)
-- [Función para añadir comandos a la API con Postman](#función-para-añadir-comandos-a-la-api-con-postman) (NUEVO)
-- [Función para ver los comandos de la API con Postman](#función-para-ver-los-comandos-de-la-api-con-postman) (NUEVO)
+- [Función para añadir comandos a la API con Postman](#función-para-añadir-comandos-a-la-api-con-postman) **(NUEVO)**
+- [Función para ver los comandos de la API con Postman](#función-para-ver-los-comandos-de-la-api-con-postman) **(NUEVO)**
 - [Disclaimer](#disclaimer)
 - [Licencia](#licencia)
 - [Librerías utilizadas creadas por terceros](#librerias-utilizadas-creadas-por-terceros)
