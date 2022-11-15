@@ -8,11 +8,11 @@ En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 co
 
 - [Requisitos](#requisitos)
 - [Crear un servidor en AWS EC2 con Ubuntu Server 20.04 LTS](#crear-un-servidor-en-aws-ec2-con-ubuntu-server-2004-lts)
-- [Crear una Base de Datos en AWS RDS con MariaDB](#crear-una-base-de-datos-en-aws-rds-con-mariadb)
+- [Crear una Base de Datos en AWS RDS con MariaDB](#crear-una-base-de-datos-en-aws-rds-con-mariadb) (NUEVO)
 - [Instalar los paquetes necesarios](#instalar-los-paquetes-necesarios) (Actualizado - Volver a ejecutar)
 - [Instalar la API](#instalar-la-api) 
 - [Configurar la API](#configurar-la-api) (NUEVO)
-- [Ejecutar la API](#ejecutar-la-api)
+- [Ejecutar la API](#ejecutar-la-api) (Actualizado)
 - [Acceder a la API](#acceder-a-la-api)
 - [Acceder a la API desde el exterior](#acceder-a-la-api-desde-el-exterior)
 - [Acceder a la API con Postman](#acceder-a-la-api-con-postman)
@@ -116,6 +116,13 @@ DB_NAME="Nombre de la base de datos"
 cd workshop-api-wsp
 node index.js
 ```
+
+3. Si todo salió bien, y no había iniciado sesión en la v1.0 de la API, el QR en la siguiente URL:
+
+```bash
+Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/qr
+```
+
 
 ## Acceder a la API
 
