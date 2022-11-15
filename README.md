@@ -8,14 +8,18 @@ En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 co
 
 - [Requisitos](#requisitos)
 - [Crear un servidor en AWS EC2 con Ubuntu Server 20.04 LTS](#crear-un-servidor-en-aws-ec2-con-ubuntu-server-2004-lts)
-- [Instalar los paquetes necesarios](#instalar-los-paquetes-necesarios)
-- [Instalar la API](#instalar-la-api)
+- [Crear una Base de Datos en AWS RDS con MariaDB](#crear-una-base-de-datos-en-aws-rds-con-mariadb)
+- [Instalar los paquetes necesarios](#instalar-los-paquetes-necesarios) (Actualizado - Volver a ejecutar)
+- [Instalar la API](#instalar-la-api) 
+- [Configurar la API](#configurar-la-api) (NUEVO)
 - [Ejecutar la API](#ejecutar-la-api)
 - [Acceder a la API](#acceder-a-la-api)
 - [Acceder a la API desde el exterior](#acceder-a-la-api-desde-el-exterior)
 - [Acceder a la API con Postman](#acceder-a-la-api-con-postman)
 - [Acceder a la API con Insomnia](#acceder-a-la-api-con-insomnia)
 - [Acceder a la API desde el exterior con el navegador web](#acceder-a-la-api-desde-el-exterior-con-el-navegador-web)
+- [Función para añadir comandos a la API con Postman](#función-para-añadir-comandos-a-la-api-con-postman) (NUEVO)
+- [Función para ver los comandos de la API con Postman](#función-para-ver-los-comandos-de-la-api-con-postman) (NUEVO)
 - [Disclaimer](#disclaimer)
 - [Licencia](#licencia)
 - [Librerías utilizadas creadas por terceros](#librerias-utilizadas-creadas-por-terceros)
@@ -41,6 +45,24 @@ En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 co
 9. Seleccionar la opción "Conectarse a la instancia"
 10. Utilizar el programa Putty para conectarse a la instancia con el par de claves descargado en el paso 7 y la dirección IPv4 pública de la instancia o su nombre de DNS público.
 
+## Crear una Base de Datos en AWS RDS con MariaDB
+
+1. Entrar a la consola de AWS y seleccionar RDS
+2. Seleccionar la opción "Crear base de datos"
+3. Seleccionar la opción "Creación Estándar"
+4. Seleccionar la opción "MariaDB" y la versión 10.6.10
+5. Seleccionar la opción "Capa gratuita"
+6. Escribir el identificador de la base de datos (ejemplo: api-whatsapp-db)
+7. Escribir el nombre de usuario maestro (ejemplo: admin)
+8. Escribir la contraseña del usuario maestro (ejemplo: admin123)
+
+9. En la sección "Configuración de la Instancia" seleccionar la opción "db.t3.micro"
+10. En la sección de "Almacenamiento" agregar un volumen de **20 GB y deshabilitar "Escalado Automático de Almacenamiento"**
+
+11. En la sección de Conectividad, seleccionar "Conectarse a un recurso informatico de EC2" y seleccionar la instancia creada en el paso 10 de la sección "Crear un servidor en AWS EC2 con Ubuntu Server 20.04 LTS"
+12. En la sección de "Grupo de Seguridad de VPC" seleccionar la opción "Elejir existente" y seleccionar el grupo de seguridad de nuestra instancia de EC2.
+13. Seleccionar la opción "Crear base de datos"
+
 
 ## Instalar los paquetes necesarios
 
@@ -49,7 +71,7 @@ En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 co
 
 ```bash
 sudo apt update
-sudo apt install nodejs npm git gconf-service libgbm-dev libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget -y
+sudo apt install nodejs npm git gconf-service libgbm-dev libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget mariadb-client -y
 
 ```
 
@@ -62,6 +84,28 @@ git clone https://github.com/patobalboa/workshop-api-wsp.git
 cd workshop-api-wsp
 npm install
 ```
+
+## Configurar la API
+
+1. En nuestra consola de AWS, seleccionar la opción "RDS" y seleccionar la base de datos creada en el paso 13 de la sección "Crear una Base de Datos en AWS RDS con MariaDB"
+2. En la sección "Conectividad y seguridad" se mostrará la dirección IPv4 pública de nuestra base de datos, copiarla en el parámetro "DB_HOST" del archivo del paso 4.
+3. Ejecutar los siguientes comandos en la consola de nuesto servidor
+
+```bash
+nano .env
+```
+
+4. Copiar y pegar el siguiente código con los parámetros de nuestra base de datos creada con Amazon RDS
+
+```bash
+DB_HOST="Punto de enlace de la base de datos"
+DB_USER="Nombre de usuario de la base de datos"
+DB_PASSWORD="password de la base de datos"
+DB_NAME="Nombre de la base de datos"
+```
+
+5. Guardar el archivo con Ctrl + O y salir con Ctrl + X
+
 
 ## Ejecutar la API
 
@@ -169,6 +213,46 @@ Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/form
 ```
 
 2. Rellenar los campos con los datos requeridos y seleccionar la opción "Enviar".
+
+## Función para añadir comandos a la API con Postman
+
+1. En una nueva pestaña de Postman seleccionar la opción "POST"
+2. Escribir la dirección IPv4 pública de la instancia o su nombre de DNS público con el puerto 3000
+
+```bash
+Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/save
+```
+
+3. Seleccionar la opción "Body"
+4. Seleccionar la opción "raw"
+5. Seleccionar la opción "JSON"
+6. Escribir el siguiente código
+
+```json
+{
+    "command": "hola",
+    "response": "Hola Mundo"
+}
+```
+
+7. Seleccionar la opción "Enviar"
+
+(Nota: Para usar con Insomnia el comando es el mismo)
+
+## Función para ver los comandos de la API con Postman
+
+1. En una nueva pestaña de Postman seleccionar la opción "GET"
+2. Escribir la dirección IPv4 pública de la instancia o su nombre de DNS público con el puerto 3000
+
+```bash
+Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/commands
+```
+
+3. Seleccionar la opción "Enviar"
+4. En la pestaña "Body" se mostrará el resultado de la consulta
+
+(Nota: Para usar con Insomnia el comando es el mismo)
+
 
 ## Disclaimer
 
