@@ -254,7 +254,7 @@ Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/save
 ```json
 {
     "command": "hola",
-    "response": "Hola Mundo"
+    "message": "Hola Mundo"
 }
 ```
 
