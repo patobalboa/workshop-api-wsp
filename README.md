@@ -249,7 +249,7 @@ Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/save
 3. Seleccionar la opción "Body"
 4. Seleccionar la opción "raw"
 5. Seleccionar la opción "JSON"
-6. Escribir el siguiente código
+6. Escribir el siguiente código.
 
 ```json
 {
