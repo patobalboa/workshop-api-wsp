@@ -96,7 +96,7 @@ npm install
 
 ```bash
 cd workshop-api-wsp
-mysql -h "punto-de-enlace-de-nuestra-base-de-datos" -u admin -p -e "CREATE DATABASE <nombre-de-database>;"
+mysql -h "punto-de-enlace-de-nuestra-base-de-datos" -u admin -p -e "CREATE DATABASE nombre-de-database;"
 ```
 2. Importar la base de datos
 
