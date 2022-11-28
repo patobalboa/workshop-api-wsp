@@ -154,8 +154,7 @@ Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/qr
 
 ## Acceder a la API
 
-1. En la consola de AWS entrar a la instancia creada
-2. Ejecutar los siguientes comandos
+1. En "otra" consola de tu ubuntu ejecutar los siguientes comandos mientras que se encuentre ejecutando tu código.
 
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"phone": "56987645321", "message": "Hola Mundo"}' http://localhost:3000/send
