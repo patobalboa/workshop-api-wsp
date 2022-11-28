@@ -12,9 +12,9 @@ En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 co
 - [Instalar los paquetes necesarios](#instalar-los-paquetes-necesarios) **(Actualizado - Volver a ejecutar)**
 - [Instalar la API](#instalar-la-api) 
 - [Configurar la API](#configurar-la-api) **(NUEVO)**
+- [Acceder a la API desde el exterior](#acceder-a-la-api-desde-el-exterior)
 - [Ejecutar la API](#ejecutar-la-api) **(Actualizado)**
 - [Acceder a la API](#acceder-a-la-api)
-- [Acceder a la API desde el exterior](#acceder-a-la-api-desde-el-exterior)
 - [Acceder a la API con Postman](#acceder-a-la-api-con-postman)
 - [Acceder a la API con Insomnia](#acceder-a-la-api-con-insomnia)
 - [Acceder a la API desde el exterior con el navegador web](#acceder-a-la-api-desde-el-exterior-con-el-navegador-web)
@@ -124,7 +124,16 @@ DB_NAME="Nombre de la base de datos"
 
 5. Guardar el archivo con Ctrl + O y salir con Ctrl + X
 
+## Acceder a la API desde el exterior
 
+1. En la consola de AWS ir a la pestaña Security Groups
+2. Seleccionar la pestaña Reglas de entrada
+3. Seleccionar la opción "Editar reglas de entrada"
+4. Seleccionar la opción "Agregar regla"
+5. Seleccionar la opción "TCP personalizado"
+6. Escribir el puerto 3000
+7. Escribir en el Origen el siguiente CIDR "0.0.0.0/0"
+8. Seleccionar la opción "Guardar reglas"
 
 ## Ejecutar la API
 
@@ -152,17 +161,6 @@ Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/qr
 curl -X POST -H "Content-Type: application/json" -d '{"phone": "56987645321", "message": "Hola Mundo"}' http://localhost:3000/send
 ```
 
-
-## Acceder a la API desde el exterior
-
-1. En la consola de AWS ir a la pestaña Security Groups
-2. Seleccionar la pestaña Reglas de entrada
-3. Seleccionar la opción "Editar reglas de entrada"
-4. Seleccionar la opción "Agregar regla"
-5. Seleccionar la opción "TCP personalizado"
-6. Escribir el puerto 3000
-7. Escribir en el Origen el siguiente CIDR "0.0.0.0/0"
-8. Seleccionar la opción "Guardar reglas"
 
 ## Acceder a la API desde el exterior con Postman
 
