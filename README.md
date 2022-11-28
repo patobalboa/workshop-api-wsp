@@ -60,7 +60,7 @@ En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 co
 10. En la sección de "Almacenamiento" agregar un volumen de **20 GB y deshabilitar "Escalado Automático de Almacenamiento"**
 
 11. En la sección de Conectividad, seleccionar "Conectarse a un recurso informatico de EC2" y seleccionar la instancia creada en el paso 10 de la sección "Crear un servidor en AWS EC2 con Ubuntu Server 20.04 LTS"
-12. En la sección de "Grupo de Seguridad de VPC" seleccionar la opción "Elejir existente" y seleccionar el grupo de seguridad de nuestra instancia de EC2.
+12. En la sección de "Grupo de Seguridad de VPC" seleccionar la opción "Elegir existente" y seleccionar el grupo de seguridad de nuestra instancia de EC2.
 13. Seleccionar la opción "Crear base de datos"
 
 
