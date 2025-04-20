@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const {Client, LocalAuth} = require('whatsapp-web.js');
-const qrcode = require('qr-image');
+const qrcode = require('qrcode-terminal');
 const fs = require('fs');
 const db = require('mariadb');
 const dotenv = require('dotenv');
@@ -48,13 +48,8 @@ const client = new Client({
 
 client.on('qr', qr => {
     console.log('QR recibido', qr);
-    let qr_svg = qrcode.image(qr, { 
-        type:'svg', margin: 4
-    });
-    const path = `${process.cwd()}/tmp`;
-    qr_svg.pipe(fs.createWriteStream('tmp/qr.svg'));
-    console.log('QR guardado en', path);
-    console.log('Escanee el QR en el navegador /qr');
+    qrcode.generate(qr, {small: true});
+    console.log('Escanea el QR para iniciar sesión');
 });
 
 client.on('ready', () => {
@@ -63,15 +58,6 @@ client.on('ready', () => {
 
 app.route('/').get((req, res) => {
     res.send('La API está funcionando');
-});
-
-app.route('/qr').get((req, res) => {
-    // send svg file to browser to display qr code.
-    sendQr();
-
-    function sendQr() {
-        res.sendFile('tmp/qr.svg', { root: __dirname });
-    }
 });
 
 
@@ -141,10 +127,8 @@ client.on('message', async msg => {
 
         if (rows.length > 0) {
             await msg.reply(rows[0].message);
-        }else{
-            await msg.reply("No entiendo el comando");
         }
-        console.log("El comando se ha guardado correctamente");
+        
     }
     catch (error) {
 
@@ -178,7 +162,7 @@ app.get('/commands', async (req, res, next) => {
 
 
 client.on('auth_failure', async () => {
-    console.log('AUTHENTICATION FAILURE');
+    console.log('Autenticación fallida, vuelve a escanear el QR');
 });
 
 

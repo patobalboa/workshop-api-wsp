@@ -2,27 +2,81 @@
 
 ## Descripción
 
-En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 con Ubuntu Server 20.04 LTS, luego vamos a configurarla para que pueda ser accedida desde el exterior y por último vamos a crear un cliente que se conecte a la API y envíe mensajes de WhatsApp con herramientas como Postman, Insomnia, cURL y formularios HTML.
+En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 con Ubuntu Server 22.04 LTS, luego vamos a configurarla para que pueda ser accedida desde el exterior y por último vamos a crear un cliente que se conecte a la API y envíe mensajes de WhatsApp con herramientas como Postman, Insomnia, cURL y formularios HTML.
 
 ## Contenido
 
+- [Descripción](#descripcion)
+- [Endpoints de la API](#endpoints-de-la-api) **(Nuevo)**
 - [Requisitos](#requisitos)
-- [Crear un servidor en AWS EC2 con Ubuntu Server 20.04 LTS](#crear-un-servidor-en-aws-ec2-con-ubuntu-server-2004-lts)
-- [Crear una Base de Datos en AWS RDS con MariaDB](#crear-una-base-de-datos-en-aws-rds-con-mariadb) **(NUEVO)**
-- [Instalar los paquetes necesarios](#instalar-los-paquetes-necesarios) **(Actualizado - Volver a ejecutar)**
+- [Crear un servidor en AWS EC2 con Ubuntu Server 22.04 LTS](#crear-un-servidor-en-aws-ec2-con-ubuntu-server-2004-lts) **(Actualizado)**
+- [Crear una Base de Datos en AWS RDS con MariaDB](#crear-una-base-de-datos-en-aws-rds-con-mariadb)
+- [Instalar los paquetes necesarios](#instalar-los-paquetes-necesarios) **(Actualizado)**
 - [Instalar la API](#instalar-la-api) 
-- [Configurar la API](#configurar-la-api) **(NUEVO)**
+- [Configurar la API](#configurar-la-api) 
 - [Acceder a la API desde el exterior](#acceder-a-la-api-desde-el-exterior)
 - [Ejecutar la API](#ejecutar-la-api) **(Actualizado)**
 - [Acceder a la API](#acceder-a-la-api)
 - [Acceder a la API con Postman](#acceder-a-la-api-con-postman)
 - [Acceder a la API con Insomnia](#acceder-a-la-api-con-insomnia)
 - [Acceder a la API desde el exterior con el navegador web](#acceder-a-la-api-desde-el-exterior-con-el-navegador-web)
-- [Función para añadir comandos a la API con Postman](#función-para-añadir-comandos-a-la-api-con-postman) **(NUEVO)**
-- [Función para ver los comandos de la API con Postman](#función-para-ver-los-comandos-de-la-api-con-postman) **(NUEVO)**
+- [Función para añadir comandos a la API con Postman](#función-para-añadir-comandos-a-la-api-con-postman) 
+- [Función para ver los comandos de la API con Postman](#función-para-ver-los-comandos-de-la-api-con-postman) 
 - [Disclaimer](#disclaimer)
 - [Licencia](#licencia)
 - [Librerías utilizadas creadas por terceros](#librerias-utilizadas-creadas-por-terceros)
+
+## Endpoints de la API
+
+## 📡 Endpoints de la API y Usos
+
+Esta sección documenta los endpoints expuestos por la API, incluyendo sus métodos HTTP, rutas, descripciones, parámetros requeridos y ejemplos de uso con `curl`.
+
+---
+
+### 📬 Enviar Mensaje por WhatsApp
+
+- **Método:** `POST`
+- **Ruta:** `/send`
+- **Descripción:** Envía un mensaje de WhatsApp a un número específico utilizando whatsapp-web.js.
+
+#### Body JSON
+
+```json
+{
+  "phone": "56987654321",
+  "message": "Hola desde la API"
+}
+```
+
+#### Ejemplo de uso con `curl`
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"phone": "56987654321", "message": "Hola desde la API"}' http://localhost:3000/send
+```
+
+#### Formulario Web
+
+Ruta: `/form`
+Descripción: Formulario HTML para enviar mensajes de WhatsApp.
+
+#### Guardar Comando
+- **Método:** `POST`
+- **Ruta:** `/save`
+- **Descripción:** Guarda un comando en la base de datos para su posterior uso.
+- **Body JSON:**
+```json
+{
+  "command": "hola",
+  "message": "Hola Mundo"
+}
+``` 
+
+#### Consultar Comandos
+- **Método:** `GET`
+- **Ruta:** `/commands`
+- **Descripción:** Consulta todos los comandos guardados en la base de datos.
+
 
 ## Requisitos
 
@@ -37,7 +91,7 @@ En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 co
 1. Entrar a la consola de AWS y seleccionar EC2
 2. Seleccionar la opción "Lanzar instancia"
 3. Nombre de la instancia: (ejemplo: api-whatsapp)
-4. Seleccionar la opción Ubuntu Server 20.04 LTS (HVM), SSD Volume Type
+4. Seleccionar la opción Ubuntu Server 22.04 LTS (HVM), SSD Volume Type GP2 (64-bit x86)
 5. Seleccionar la opción t2.micro
 6. Seleccionar la opción Crear un nuevo par de claves
 7. Escribir el nombre del par de claves y seleccionar la opción Descargar clave privada (.ppk)
@@ -59,7 +113,7 @@ En este workshop vamos a instalar esta API en un servidor de Linux de AWS EC2 co
 9. En la sección "Configuración de la Instancia" seleccionar la opción "db.t3.micro"
 10. En la sección de "Almacenamiento" agregar un volumen de **20 GB y deshabilitar "Escalado Automático de Almacenamiento"**
 
-11. En la sección de Conectividad, seleccionar "Conectarse a un recurso informatico de EC2" y seleccionar la instancia creada en el paso 10 de la sección "Crear un servidor en AWS EC2 con Ubuntu Server 20.04 LTS"
+11. En la sección de Conectividad, seleccionar "Conectarse a un recurso informatico de EC2" y seleccionar la instancia creada en el paso 10 de la sección "Crear un servidor en AWS EC2 con Ubuntu Server 22.04 LTS"
 12. En la sección de "Grupo de Seguridad de VPC" seleccionar la opción "Elegir existente" y seleccionar el grupo de seguridad de nuestra instancia de EC2.
 13. Seleccionar la opción "Crear base de datos"
 
@@ -74,8 +128,8 @@ sudo apt update
 sudo apt install nodejs npm git gconf-service libgbm-dev libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget mariadb-client -y
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 source /home/ubuntu/.bashrc
-nvm install 14
-nvm use 14
+nvm install 20
+nvm use 20
 ```
 
 ## Instalar la API
@@ -145,16 +199,17 @@ cd workshop-api-wsp
 node index.js
 ```
 
-3. Si todo salió bien, y no había iniciado sesión en la v1.0 de la API, el QR en la siguiente URL:
+3. Si todo salió bien, y no había iniciado sesión en la API antes, se generará un código QR en la consola de nuestro servidor. Escanear el código QR con la aplicación de WhatsApp en nuestro teléfono móvil. Si no se genera el código QR, presionar Ctrl + C y volver a ejecutar el comando `node index.js`.
 
-```bash
-Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/qr
-```
+4. Una vez escaneado el código QR, se generará un mensaje en la consola de nuestro servidor indicando que se ha conectado a WhatsApp. Si no se genera el mensaje, presionar Ctrl + C y volver a ejecutar el comando `node index.js`.
+
+5. Ya está todo listo para enviar mensajes de WhatsApp desde la API.
+
 
 
 ## Acceder a la API
 
-1. En "otra" consola de tu ubuntu ejecutar los siguientes comandos mientras que se encuentre ejecutando tu código.
+1. En "otra" consola de tu ubuntu (Puedes duplicar la consola de Putty) ejecutar el siguiente comando
 
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"phone": "56987645321", "message": "Hola Mundo"}' http://localhost:3000/send
@@ -174,7 +229,7 @@ https://www.postman.com/downloads/
 4. Abrir Postman
 5. Seleccionar la opción "Nueva pestaña"
 6. Seleccionar la opción "POST"
-7. Escribir la dirección IPv4 pública de la instancia o su nombre de DNS público con el puerto 3000
+7. Escribir la dirección IPv4 pública de la instancia o su nombre de DNS público con el puerto 3000 y el endpoint /send
 
 ```bash
 Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/send
@@ -207,7 +262,7 @@ https://insomnia.rest/download/
 4. Abrir Insomnia
 5. Seleccionar la opción "Crear solicitud"
 6. Seleccionar la opción "POST"
-7. Escribir la dirección IPv4 pública de la instancia o su nombre de DNS público con el puerto 3000
+7. Escribir la dirección IPv4 pública de la instancia o su nombre de DNS público con el puerto 3000 y el endpoint /send
 
 ```bash
 Ejemplo: http://ec2-54-234-123-123.compute-1.amazonaws.com:3000/send
